@@ -1,26 +1,23 @@
 Dataset information
-
-Columns:
-  ride_id - text
-  rideable_type - text
-  started_at - text
-  ended_at - text
-  start_station_name - text
-  start_station_id - double
-  end_station_name - text
-  end_station_id - double
-  start_lat - double
-  start_lng - double
-  end_lat - double
-  end_lng - double
-  member_casual - text
-
-
-with cbr as (
-select *
-from 2021_citi_bike_data.june_rides),
-
-
+-- Table Name: cbr
+-- +-------------------+-----------+
+-- | Column Name         | Type    |
+-- +---------------------+---------+
+-- | ride_id             | text    |
+-- | rideable_type       | text    |
+-- | started_at          | text    | 
+-- | ended_at            | text    |
+-- | start_station_name  | text    |
+-- | start_station_id    | double  |
+-- | end_station_name    | text    |
+-- | end_station_id      | double  |
+-- | start_lat           | double  |
+-- | start_lng           | double  |
+-- | end_lat             | double  |
+-- | end_lng             | double  |
+-- | member_casual       | text    |
+-- +---------------------+---------+
+ 
 --Count the total number of rides in the dataset
 select count(*)
 from cbr
@@ -39,7 +36,7 @@ from cbr
 -- 1,433
 
 
--- What are the top 10 busiest docks and their count, ordered from most busy to least busy
+-- What are the top 10 stations with the most activity (ride starts and ride ends)?
 popular_starts as (
   select 
 	  start_station_name, 	
@@ -58,8 +55,8 @@ from (
 	from popular_starts) a
 where rnk <= 10
 
-'E 17 St & Broadway','12735' -- union square (subway? yes)
-'W 21 St & 6 Ave','12404' -- 
+'E 17 St & Broadway','12735'
+'W 21 St & 6 Ave','12404' 
 'West St & Chambers St','12221'
 'Broadway & W 25 St','11630'
 '1 Ave & E 68 St','11140'
